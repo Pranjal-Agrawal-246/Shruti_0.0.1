@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Shruti — System Translator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin:0; 
+      background: url("Image.png") no-repeat center center fixed; 
+      background-size: cover;
+      color:#fff; 
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      min-height:100vh; 
+      display:grid; 
+      place-items:center;
+    }
+
+    .wrap {
+      width:min(1100px,95vw); 
+      padding:24px; 
+      background:rgba(0,0,0,.45); 
+      border-radius:20px; 
+      backdrop-filter:blur(8px) brightness(.9);
+    }
+
+    h1 {
+      margin:0 0 8px; 
+      font-weight:700; 
+      font-size:42px; 
+      color:#4c9be0; 
+      text-align:center;
+    }
+    .h1-logo {
+      height: 56px;
+      width: auto;
+      vertical-align: middle;
+      filter: brightness(3.2) saturate(0.4);
+    }
+    .mirrored {
+  transform: scaleX(-1); /* Flip horizontally */
+  transform-origin: center; /* Keep it centered */
+}
+
+     .toolbar {
+      display:flex; 
+      justify-content:center; 
+      align-items:center; 
+      gap:10px; 
+      margin:10px 0 16px;
+      flex-wrap: wrap;
+    }
+
+    label {
+      font-size:15px;
+      font-weight:500;
+    }
+
+    select {
+      background:rgba(10,10,30,0.85); 
+      color:#fff; 
+      border:1px solid rgba(255,255,255,0.2); 
+      border-radius:10px; 
+      padding:8px 12px; 
+      font-size:15px;
+      min-width:180px;
+      transition: all 0.3s ease;
+    }
+    select:hover {
+      border-color:#5b42f3;
+      box-shadow: 0 0 10px rgba(91,66,243,0.5);
+    }
+
+    button {
+      background-image:linear-gradient(144deg,#af40ff,#5b42f3 50%,#00ddeb);
+      color:#fff; 
+      border:none; 
+      border-radius:10px; 
+      padding:8px 16px; 
+      font-size:15px; 
+      font-weight:500;
+      cursor:pointer; 
+      transition:transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover {
+      transform:translateY(-2px);
+      box-shadow:0 8px 25px rgba(91,66,243,0.35);
+    }
+
+    .card {
+      background:rgba(3,3,3,.8); 
+      border-radius:18px; 
+      padding:18px 20px; 
+      box-shadow:0 8px 30px rgba(0,0,0,.35); 
+      min-height:200px;
+      backdrop-filter:blur(6px);
+    }
+
+    .label { 
+      opacity:.8; 
+      font-size:13px; 
+      letter-spacing:.4px; 
+      text-transform:uppercase; 
+      margin-bottom:10px; 
+    }
+
+    .text { 
+      font-size:clamp(20px, 2.4vw, 32px); 
+      line-height:1.34; 
+      white-space:pre-wrap; 
+      min-height:120px; 
+    }
+
+    .status { 
+      margin-top:8px; 
+      font-size:12px; 
+      opacity:.6; 
+      display:flex; 
+      gap:8px; 
+      justify-content:space-between; 
+    }
+    footer {
+  text-align: center;
+  margin-top: 30px;
+  padding: 12px 0;
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(6px);
+}
+#toast {
+  visibility: hidden;
+  min-width: 240px;
+  background: linear-gradient(135deg, #5b42f3, #00ddeb);
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  padding: 12px;
+  position: fixed;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  font-size: 15px;
+  font-weight: 500;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.4s ease, bottom 0.4s ease;
+}
+#toast.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 60px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>
+      <img src="wind2.png" alt="" class="h1-logo mirrored"> System Translator
+    <img src="wind2.png" alt="" class="h1-logo"></h1>
+
+    <!-- Original toolbar preserved -->
+    <div class="toolbar">
+      <label for="lang">Translate SYS into:</label>
+      <select id="lang">
+        <option value="hi">Hindi (hi)</option>
+        <option value="en">English (en)</option>
+        <option value="mr">Marathi (mr)</option>
+        <option value="gu">Gujarati (gu)</option>
+        <option value="bn">Bengali (bn)</option>
+        <option value="ta">Tamil (ta)</option>
+        <option value="te">Telugu (te)</option>
+        <option value="ml">Malayalam (ml)</option>
+        <option value="kn">Kannada (kn)</option>
+      </select>
+      <button id="apply">Apply</button>
+    </div>
+
+    <div class="card">
+      <div class="label">💻 Live System Audio (translated)</div>
+      <div id="sys" class="text">Waiting…</div>
+      <div class="status">
+        <span id="sys-status"></span>
+        <span id="sys-src"></span>
+      </div>
+    </div>
+  </div>
+  <footer>
+  <p>© 2025 Shruti — Real-time Audio Translator</p>
+</footer>
+
+<div id="toast"></div>
+  <script>
+    const sysEl = document.getElementById('sys');
+    const sysStatus = document.getElementById('sys-status');
+    const sysSrc = document.getElementById('sys-src');
+
+    const ws = new WebSocket("ws://localhost:8000/ws");
+
+    ws.onopen = () => { sysStatus.textContent = 'Connected'; };
+    ws.onclose = () => { sysStatus.textContent = 'Disconnected'; };
+
+    ws.onmessage = (ev) => {
+      let msg = ev.data || '';
+      if (msg.startsWith("{")) return; // ignore control messages
+
+      let src = "";
+      if (msg.includes("|||")) {
+        const parts = msg.split("|||");
+        msg = parts[0].trim();
+        src = (parts[1] || "").trim();
+      }
+      if (msg.startsWith('[SYS]')) {
+        sysEl.textContent = msg.replace('[SYS]','').trim();
+        sysStatus.textContent = new Date().toLocaleTimeString();
+        sysSrc.textContent = src ? ("Detected: " + src.toUpperCase()) : "";
+      }
+    };
+
+    // Apply selected language
+    document.getElementById('apply').onclick = () => {
+  const lang = document.getElementById('lang').value;
+  if (!ws || ws.readyState !== WebSocket.OPEN) {
+    showToast("❌ Not connected to server");
+    return;
+  }
+  try {
+    ws.send(JSON.stringify({ type: "set_target", scope: "SYS", lang }));
+    sysStatus.textContent = "Language set to " + lang;
+    showToast("🌐 Language changed to " + lang.toUpperCase());
+  } catch (err) {
+    console.error("Error sending lang:", err);
+    showToast("⚠️ Error changing language");
+  }
+};
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.className = "show";
+  setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 2500);
+}
+  </script>
+</body>
+</html>

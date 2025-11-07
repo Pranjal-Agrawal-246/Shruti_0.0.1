@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Shruti Live Captions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    body {
+      margin: 0;
+      background: url("Image.png") no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+    }
+
+    
+
+    h1 {
+      margin: 0 auto 8px;
+      font-weight: 700;
+      font-size: 52px;
+      color: #4c9be0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .h1-logo {
+      height: 56px;
+      width: auto;
+      vertical-align: middle;
+      filter: brightness(3.2) saturate(0.4);
+    }
+
+    .mirrored {
+      transform: scaleX(-1);
+      transform-origin: center;
+    }
+
+    .subtitle {
+      margin: 8px 0 40px;
+      font-weight: 400;
+      font-size: 16px;
+      color: #ccc;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    /* Button-style links */
+    a.btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 60px;
+      min-width: 240px;
+      border-radius: 12px;
+      background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: rgba(151, 65, 252, 0.25) 0 10px 25px -5px;
+      overflow: hidden;
+      padding: 3px;
+    }
+
+    a.btn span {
+      background-color: rgb(5, 6, 45);
+      padding: 14px 15px;
+      border-radius: 10px;
+      transition: background 300ms ease;
+      width: 89%;
+      text-align: center;
+    }
+
+    a.btn:hover span {
+      background: transparent;
+    }
+
+    a.btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Descriptive paragraphs under each button */
+    .desc {
+      max-width: 320px;
+      color: rgba(255,255,255,0.85);
+      font-size: 15px;
+      margin-top: 10px;
+      line-height: 1.5;
+      text-align: center;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    
+  /* ...existing styles... */
+
+  .wrap {
+    margin: auto 0;
+    width: min(1100px, 95vw);
+    padding: 60px 40px 40px; /* increased top padding for more space */
+    backdrop-filter: blur(8px) brightness(0.9);
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 20px;
+    text-align: center;
+    min-height: 62vh; /* increased height */
+  }
+
+  /* Descriptive paragraphs under each button */
+  .desc {
+    max-width: 340px;
+    color: rgba(255,255,255,0.85);
+    font-size: 17px; /* increased font size */
+    margin-top: 20px; /* increased distance from button */
+    line-height: 1.6;
+    text-align: center;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .features {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 100px 10%;
+  background: #0d0d0d;
+  position: relative;
+}
+
+.feature {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ccc;
+  padding: 40px 30px;
+  border-radius: 20px;
+  width: 280px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  transition: all 0.4s ease;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.1);
+  position: relative; /* needed for pseudo-element */
+}
+
+/* Vertical divider */
+.feature:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 10%;
+  right: -20px; /* spacing between features */
+  width: 2px;
+  height: 80%;
+  background: rgba(255,255,255,0.2);
+}
+ footer {
+      text-align: center;
+      margin-top: 30px;
+      padding: 12px 0;
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(6px);
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 38px;
+      }
+      .h1-logo {
+        height: 40px;
+      }
+      a.btn {
+        min-width: 180px;
+        font-size: 16px;
+      }
+      .desc {
+        font-size: 14px;
+      }
+    }
+
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 38px;
+    }
+    .h1-logo {
+      height: 40px;
+    }
+    a.btn {
+      min-width: 180px;
+      font-size: 16px;
+    }
+    .desc {
+      font-size: 16px;
+      margin-top: 16px;
+    }
+    .feature::after {
+      width: 80%;
+    }
+  }
+</style>
+
+
+   
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <h1>
+      <img src="wind2.png" alt="" class="h1-logo mirrored">
+      Shruti
+      <img src="wind2.png" alt="" class="h1-logo">
+    </h1>
+
+    <div class="subtitle">Your trusted translator tool</div>
+
+    <div class="row">
+      <div class="feature">
+        <a href="_index_mic.html" class="btn"><span>Translate Microphone</span></a>
+        <p class="desc">Capture your voice or nearby conversations and instantly translate them into your chosen language in real-time.</p>
+      </div>
+
+      <div class="feature">
+        <a href="_index_sys.html" class="btn"><span>Translate System Audio</span></a>
+        <p class="desc">Automatically translate your computer’s audio output — like online meetings, videos, or songs — with just one click.</p>
+      </div>
+
+      <div class="feature">
+        <a href="_index_video.html" class="btn"><span>Translate Video Audio</span></a>
+        <p class="desc">Upload or stream a video, and get accurate, real-time translations of its audio into clear text captions.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Shruti — Real-time Audio Translator</p>
+  </footer>
+</body>
+</html>

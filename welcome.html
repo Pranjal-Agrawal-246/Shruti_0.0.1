@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shruti — Welcome</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', system-ui, sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+      background-color: #000;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      background: url("welcome.png") no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Dark haze overlay */
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 1;
+    }
+
+    .brand {
+      position: absolute;
+      top: 24px;
+      left: 48px;
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      background: linear-gradient(120deg, #00ddeb, #5b42f3, #af40ff);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 6s ease infinite;
+      text-transform: uppercase;
+      text-shadow: 0 2px 10px rgba(76, 155, 224, 0.3);
+      z-index: 3;
+      cursor: default;
+      transition: transform 0.3s ease;
+    }
+
+    .brand:hover { transform: scale(1.05); }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Navbar styling */
+    nav {
+      position: absolute;
+      top: 110px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 80%;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 40px;
+      padding: 10px 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover { color: #00ddeb; }
+
+    .get-started {
+      background: linear-gradient(120deg, #00ddeb, #5b42f3, #af40ff);
+      color: white;
+      border: none;
+      padding: 10px 26px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 15px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .get-started:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    /* Hero Content Animations */
+    .hero-content {
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .hero small {
+      display: block;
+      font-size: 18px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #00ddeb;
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateX(60px);
+      animation: fadeInRight 1.5s ease forwards;
+      animation-delay: 0.3s;
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      margin-bottom: 28px;
+      line-height: 1.2;
+      opacity: 0;
+      transform: translateX(-60px);
+      animation: fadeInLeft 1.5s ease forwards;
+      animation-delay: 0.8s;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: rgba(255,255,255,0.85);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeInStatic 1.8s ease forwards;
+      animation-delay: 1.4s;
+    }
+
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInStatic {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      background: #0b0b0b;
+      color: rgba(255,255,255,0.6);
+      padding: 20px;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+ .features {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 100px 10%;
+  background: #0d0d0d;
+}
+
+.feature {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ccc;
+  padding: 40px 30px;
+  border-radius: 20px;
+  width: 280px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  transition: all 0.4s ease;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.feature h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.feature p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.5;
+}
+
+/* Hover effects — the "alive" effect */
+.feature:hover {
+  background: linear-gradient(135deg, #5b42f3, #af40ff);
+  color: #fff;
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(175, 64, 255, 0.4);
+  border: none;
+}
+
+/* Animate gradient glow on hover */
+.feature:hover h3,
+.feature:hover p {
+  color: #fff;
+}
+
+
+.scroll-down {
+  position: absolute;
+  bottom: 40px;
+  font-size: 28px;
+  color: #00ddeb;
+  animation: bounce 2s infinite;
+  opacity: 0.8;
+  z-index: 3;
+  cursor: pointer;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="brand">Shruti <img src="wind2.png" alt="" class="h1-logo">
+    </div>
+
+    <nav>
+      <div class="nav-links">
+        <a href="_index_home.html">Home</a>
+        <a href="_index_sys.html">System</a>
+        <a href="_index_mic.html">Microphone</a>
+        <a href="_index_video.html">Video</a>
+      </div>
+      <button class="get-started">Get Started</button>
+    </nav>
+
+    <div class="hero-content">
+      <small>Welcome to</small>
+      <h1>Real-Time Translation Reinvented</h1>
+      <p>Shruti lets you understand and communicate seamlessly — across languages, across systems, across people.</p>
+    </div>
+  </div>
+<div class="scroll-down">↓</div>
+  <section class="features">
+  <div class="feature">
+    <h3>🎧 Listen</h3>
+    <p>Capture live audio from any source with clarity.</p>
+  </div>
+  <div class="feature">
+    <h3>🧠 Understand</h3>
+    <p>Whisper-based models transcribe with near real-time accuracy.</p>
+  </div>
+  <div class="feature">
+    <h3>🌐 Translate</h3>
+    <p>Instantly translate across languages using Google Translate API.</p>
+  </div>
+</section>
+
+  <footer>
+    <p>© 2025 Shruti — Real-Time Audio Translator</p>
+  </footer>
+
+</body>
+</html>
